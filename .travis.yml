@@ -4,7 +4,7 @@ install: true
 os:
   - linux
   - osx
-  - windows
+#  - windows
 jdk: oraclejdk12
 
 script:
