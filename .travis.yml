@@ -8,4 +8,4 @@ os:
 jdk: oraclejdk12
 
 script:
-  - gradle build --scan -s
+  - ./gradlew build --scan -s
