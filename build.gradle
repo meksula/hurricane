@@ -7,6 +7,7 @@ plugins {
 group 'hurricane'
 version '1.0-SNAPSHOT'
 
+mainClassName = 'com.hurricane.generator.Main'
 sourceCompatibility = 1.8
 
 repositories {

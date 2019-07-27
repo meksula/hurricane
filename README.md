@@ -1,3 +1,5 @@
+![picture](hurricane-logo.png)
+
 # Hurricane Documentation Generator
 
 ### Features and description
