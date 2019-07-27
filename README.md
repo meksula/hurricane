@@ -22,6 +22,18 @@ Hurricane is able to read source code both from local storage and remote git rep
 
 ### How to run
 
+#### Development mode
+##### Requirements
+- Java 12.0.1 (recommended version)
+- OpenJFX 12 (javafx-sdk-11.0.2 available in official website)
+- Gradle 5.5.1 (highly recommended)
+
+##### How to run
+- Build jar archive with gradle by simply run command `$gradle clean build`
+- Next go to your jar in `build/libs` and run it with command `java -jar hurricane-doc.jar`
+- If you want to run project in Intellij Idea, open Edit configuration button, indicate Main.class and 
+  add this row in VM options: `--module-path /Library/Java/Extensions/javafx-sdk-11.0.2/lib --add-modules=javafx.controls`
+  Notice that you need to replace path to JavaFX to your own of course.
 
 ### Versions and changelog
 
