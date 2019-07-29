@@ -1,16 +1,14 @@
 package com.hurricane.generator;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import com.hurricane.generator.ui.ApplicationContext;
+import com.hurricane.generator.ui.UserInterfaceInit;
+import com.hurricane.generator.ui.UserInterfaceInitBase;
 
-public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.show();
-    }
+public class Main {
+    private static UserInterfaceInit userInterfaceInit = new UserInterfaceInitBase();
 
     public static void main(String[] args) {
-        Application.launch(args);
+        ApplicationContext context = new ApplicationContext(args);
+        userInterfaceInit.init(context);
     }
 }
