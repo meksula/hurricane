@@ -1,9 +1,21 @@
+buildscript {
+    ext.kotlin_version = '1.3.41'
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.7'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.41'
 }
 
+apply plugin: 'kotlin'
 group 'hurricane'
 version '1.0-SNAPSHOT'
 
@@ -12,11 +24,6 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-}
-
-javafx {
-    version = "12.0.1"
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.base', 'javafx.graphics' ]
 }
 
 jar {
@@ -33,4 +40,17 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
