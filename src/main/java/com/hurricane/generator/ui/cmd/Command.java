@@ -12,7 +12,14 @@ public class Command {
     }
 
     public static Command of(String commandTyped) throws NoSuchFieldError {
-        String enumAsString = commandTyped.substring(2).toUpperCase();
+        String enumAsString = commandTyped.toUpperCase();
         return new Command(CommandAvailable.valueOf(enumAsString));
+    }
+
+    @Override
+    public String toString() {
+        return this.commandAvailable.name()
+                .concat(" - ")
+                .concat(this.commandAvailable.description());
     }
 }

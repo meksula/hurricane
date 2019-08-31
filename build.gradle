@@ -20,7 +20,7 @@ group 'hurricane'
 version '1.0-SNAPSHOT'
 
 mainClassName = 'com.hurricane.generator.Main'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.9
 
 repositories {
     mavenCentral()
@@ -39,8 +39,16 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.1'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.1'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.1'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.5.1'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 compileKotlin {
