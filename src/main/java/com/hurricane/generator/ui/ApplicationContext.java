@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.hurricane.generator.ui.cli.UtilsKt.print;
+import static com.hurricane.generator.ui.dialog.ApplicationDialog.COMMAND_PREFIX;
 
 public class ApplicationContext {
 
@@ -22,6 +23,9 @@ public class ApplicationContext {
     private Set<Command> factorize(String[] args) {
         return Stream.of(args)
                 .map(arg -> {
+                    if (arg.startsWith(COMMAND_PREFIX)) {
+                        return Command.of("NONE");
+                    }
                     try {
                         return Command.of(arg);
                     } catch (IllegalArgumentException exception) {
