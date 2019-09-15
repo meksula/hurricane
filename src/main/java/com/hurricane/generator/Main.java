@@ -9,7 +9,7 @@ import static com.hurricane.generator.ui.dialog.ApplicationDialog.findModeFlag;
 public class Main {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ApplicationContext(args);
+        ApplicationContext context = ApplicationContext.getInstance().init(args);
         UserInterfaceInit userInterfaceInit = new UserInterfaceInitBase(findModeFlag(args));
         userInterfaceInit.init(context);
     }

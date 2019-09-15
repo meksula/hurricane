@@ -26,20 +26,20 @@ class ApplicationContextTest {
     @MethodSource("provideArgs")
     @DisplayName("Should correctly convert args array to set of Commands")
     void convertTest(ArrayWrapper arrayWrapper) {
-        applicationContext = new ApplicationContext(arrayWrapper.getArgs());
+        applicationContext = ApplicationContext.init(arrayWrapper.getArgs());
         applicationContext.commandsInfo();
 
-        assertEquals(applicationContext.getCommands().size(), arrayWrapper.getArgs().length);
+        assertEquals(ApplicationContext.getCommands().size(), arrayWrapper.getArgs().length);
     }
 
     @ParameterizedTest
     @MethodSource("provideArgsInvalid")
     @DisplayName("Should throw exception because Command as enum not exist")
     void convertInvalidTest(ArrayWrapper arrayWrapper) {
-        applicationContext = new ApplicationContext(arrayWrapper.getArgs());
+        applicationContext = ApplicationContext.init(arrayWrapper.getArgs());
 
-        assertAll(() -> applicationContext.getCommands().forEach(command -> assertEquals(CommandAvailable.NONE, command.getCommandAvailable())),
-                () -> assertEquals(applicationContext.getCommands().size(), arrayWrapper.getArgs().length));
+        assertAll(() -> ApplicationContext.getCommands().forEach(command -> assertEquals(CommandAvailable.NONE, command.getCommandAvailable())),
+                () -> assertEquals(ApplicationContext.getCommands().size(), arrayWrapper.getArgs().length));
     }
 
     @Test
@@ -47,7 +47,7 @@ class ApplicationContextTest {
     void oneArgsMalformedTest() {
         final String[] ARGS = getApplicationArgumentsOneMalformed();
 
-        applicationContext = new ApplicationContext(ARGS);
+        applicationContext = ApplicationContext.init(ARGS);
         assertTrue(applicationContext.hasNone());
     }
 

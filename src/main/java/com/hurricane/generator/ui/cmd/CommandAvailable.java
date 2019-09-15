@@ -51,4 +51,13 @@ public enum CommandAvailable {
     };
 
     public abstract String description();
+
+    public static boolean isExist(String commandAsString) {
+        try {
+            CommandAvailable.valueOf(commandAsString);
+            return true;
+        } catch (IllegalArgumentException exception) {
+            return false;
+        }
+    }
 }
