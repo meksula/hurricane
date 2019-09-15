@@ -26,20 +26,23 @@ class ApplicationContextTest {
     @MethodSource("provideArgs")
     @DisplayName("Should correctly convert args array to set of Commands")
     void convertTest(ArrayWrapper arrayWrapper) {
-        applicationContext = ApplicationContext.init(arrayWrapper.getArgs());
+        ApplicationContext applicationContext = ApplicationContext.getInstance();
+        applicationContext = applicationContext.init(arrayWrapper.getArgs());
         applicationContext.commandsInfo();
 
-        assertEquals(ApplicationContext.getCommands().size(), arrayWrapper.getArgs().length);
+        assertEquals(applicationContext.getCommands().size(), arrayWrapper.getArgs().length);
     }
 
     @ParameterizedTest
     @MethodSource("provideArgsInvalid")
     @DisplayName("Should throw exception because Command as enum not exist")
     void convertInvalidTest(ArrayWrapper arrayWrapper) {
-        applicationContext = ApplicationContext.init(arrayWrapper.getArgs());
+        ApplicationContext applicationContext = ApplicationContext.getInstance();
+        applicationContext = applicationContext.init(arrayWrapper.getArgs());
 
-        assertAll(() -> ApplicationContext.getCommands().forEach(command -> assertEquals(CommandAvailable.NONE, command.getCommandAvailable())),
-                () -> assertEquals(ApplicationContext.getCommands().size(), arrayWrapper.getArgs().length));
+        final ApplicationContext CONTEXT = applicationContext;
+        assertAll(() -> CONTEXT.getCommands().forEach(command -> assertEquals(CommandAvailable.NONE, command.getCommandAvailable())),
+                () -> assertEquals(CONTEXT.getCommands().size(), arrayWrapper.getArgs().length));
     }
 
     @Test
@@ -47,7 +50,7 @@ class ApplicationContextTest {
     void oneArgsMalformedTest() {
         final String[] ARGS = getApplicationArgumentsOneMalformed();
 
-        applicationContext = ApplicationContext.init(ARGS);
+        applicationContext = ApplicationContext.getInstance().init(ARGS);
         assertTrue(applicationContext.hasNone());
     }
 
